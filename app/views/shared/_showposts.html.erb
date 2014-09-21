@@ -1,0 +1,31 @@
+<% obj.each do |post| %>
+<div class="span2 well text-center">
+	<% if logged_in? %>
+		<%= link_to vote_post_path(post, vote: true), method: "post" do %>
+		<i class="icon-circle-arrow-up"></i>
+		<% end %>
+	<% end %>
+
+	<br/>
+	<%= "#{post.total_votes} votes" %>
+	<br/>
+
+	<% if logged_in? %>
+		<%= link_to vote_post_path(post, vote: false), method: "post" do %>
+		<i class="icon-circle-arrow-down"></i>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="span8 well">
+	<h3><%= link_to post.title, post_path(post) %></h3>
+	<%= render post.categories %></p>
+	<p><%= post.description %></p>
+
+	<p class="quiet">Posted by <%= post.creator.username %> at <%= betterdatetime(post.created_at) %> 
+	</p>
+	<% commentssize = "#{post.comments.size} comments" %>
+	<p><%= link_to commentssize, post_path(post) %>   <%= if logged_in?; link_to 'Edit', edit_post_path(post); end  %><p>
+</div>
+	
+<% end %>

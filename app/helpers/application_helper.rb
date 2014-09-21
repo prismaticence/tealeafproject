@@ -6,4 +6,8 @@ module ApplicationHelper
 	def betterdatetime(datetime)
 		datetime.strftime("%m/%d/%Y 1:%M%P %Z")
 	end
+
+	
+
+	
 end

@@ -1,0 +1,14 @@
+<h2>Edit Profile</h2>
+<%= render 'shared/errors', :myclass => @user %>
+
+	<%= form_for @user do |f| %>
+	<div class="Control-group">
+		<%= f.label :username, "Username" %>
+		<%= f.text_field :username %>
+	<div class="Control-group">
+		<%= f.label :password, "Password" %>
+		<%= f.password_field :password %>
+	</div>
+
+	<%= f.submit "Update profile", class: "btn btn-success" %>
+	<% end %>

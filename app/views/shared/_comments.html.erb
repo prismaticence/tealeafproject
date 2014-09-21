@@ -1,0 +1,26 @@
+<% obj.comments.each do |comment| %>
+<div class="span0 well">
+	<% if logged_in? %> 
+		<%= link_to vote_comment_path(comment, vote: true, commentid: comment.id), method: "post" do %>
+		<i class="icon-circle-arrow-up"></i>
+		<% end %>
+	<% end %>
+<br/>
+<%= "#{comment.total_votes} votes" %>
+<br/>
+	<% if logged_in? %> 
+		<%= link_to vote_comment_path(comment, vote: false, commentid: comment.id), method: "post" do %>
+		<i class="icon-circle-arrow-down"></i>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="well">
+	<p><%= comment.body %> 
+	<% if show_post == true %>
+	on <%= link_to comment.post.title, post_path(comment.post) %>
+	<% end %>
+	</p>
+	<div class="quiet">by <%=link_to comment.user.username, user_path(comment.user) %> at <%= betterdatetime(comment.created_at) %></div>
+</div>
+<% end %>

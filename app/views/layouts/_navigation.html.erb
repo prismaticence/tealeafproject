@@ -6,15 +6,58 @@
 
 <div class='btn-group nav_item'>
 	 <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
-	 Categories <spam class="caret"></span>
+	 Categories <span class="caret"></span>
 		<% end %>
 	 <ul class="dropdown-menu">
 	    <% Category.all.each do |catname| %>
 	    <li><%= link_to catname.name, category_path(catname) %></li>
 	    <% end %>
+	    <% if logged_in? %>
 	    <li><%= link_to "+ New Category", new_category_path %>
+	    <% end %>
 	 </ul>
-
-<div class='nav_item'>
-	<%= link_to 'New Post', new_post_path, class: 'btn btn-success' %>
 </div>
+
+<% if logged_in? %>
+	<div class='nav_item'>
+		You are logged in as <%= current_user.username %>
+	<div class='nav_item btn btn-warning'>
+		<%= link_to 'New Post', new_post_path %>
+	</div>
+	<div class='btn-group nav_item'>
+			 <%= link_to '', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %><%= current_user.username %><span class="caret"></span>
+		<ul class="dropdown-menu">
+			<li><%= link_to edit_user_path(current_user) do %>
+				<i class="icon-pencil"></i>
+				Edit profile
+				<% end %>
+			</li>
+			<li><%= link_to user_path(current_user) do %>
+				<i class="icon-user"></i>
+				View profile
+			<% end %>
+
+			</li>
+			<li><%= link_to logout_path do %>
+				<i class="icon-star"></i>
+				Logout
+			<% end %>
+			</li>
+		</ul>
+		<% end %>
+	</div>
+
+
+<% else %>
+	
+	<div class='nav_item'>
+		<%= link_to 'Register', register_path %>
+	</div>
+
+
+	<div class='nav_item'>
+		<%= link_to 'Login', login_path %>
+	</div>
+<% end %>
+
+

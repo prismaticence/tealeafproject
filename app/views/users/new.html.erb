@@ -1,0 +1,20 @@
+<h2> Registration </h2>
+<%= render 'shared/errors', myclass: @user %>
+<%= form_for @user do |f| %>
+<div class="control-group">
+	<%= f.label :username, "Choose a Username" %>
+	<%= f.text_field :username %>
+</div>
+
+<div class="control-group">
+	<%= f.label :password, "Choose a Password" %>
+	<%= f.password_field :password %>
+</div>
+
+<div class="control-group">
+	<%= f.label :password_confirmation, "Confirm Password" %>
+	<%= f.password_field :password_confirmation %>
+</div>
+
+<%= f.submit "Register" %>
+<% end %>

@@ -1,18 +1,6 @@
 
 <%= render 'shared/content_title', title: 'All posts' %>
+<%= render 'shared/showposts', obj: @posts %>
 
-<% @posts.each do |post| %>
-	
-	<h3><%= link_to post.title, post_path(post) %></h3>
-	<%= render post.categories %></p>
-	<p><%= post.description %></p>
-
-	<p class="quiet">Posted by <%= post.creator.username %> at <%= betterdatetime(post.created_at) %> 
-	</p>
-	<% commentssize = "#{post.comments.size} comments" %>
-	<p><%= link_to commentssize, post_path(post) %>  	<%= link_to 'Edit', edit_post_path(post) %><p>
-
-	
-<% end %>
 <%= link_to 'Create a new post', new_post_path %>
 
